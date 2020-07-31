@@ -18,6 +18,11 @@ test:
   stage: test
   script: echo Test!
 
+slow load test:
+  stage: test
+  script: sleep 20 && echo Test!
+  allow_failure: true
+
 deploy:
   stage: deploy
   script: echo Deploy!
