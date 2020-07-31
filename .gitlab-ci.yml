@@ -22,6 +22,14 @@ slow load test:
   stage: test
   script: sleep 20 && echo Load Test! && false
   allow_failure: true
+  only:
+    - master
+
+integration test:
+  stage: test
+  script: sleep 10 && echo Integration Test!
+  only:
+    - merge_requests
 
 deploy:
   stage: deploy
@@ -30,7 +38,11 @@ deploy:
   allow_failure: false
   needs:
     - test
+  only:
+    - master
 
 healthcheck:
   stage: healthcheck
   script: echo Check deploymnet!
+  only:
+    - master
