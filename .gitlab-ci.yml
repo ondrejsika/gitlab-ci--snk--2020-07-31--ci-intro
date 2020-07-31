@@ -8,14 +8,18 @@ stages:
 
 build foo:
   stage: build
-  script: echo Build foo!
+  script:
+    - cd foo
+    - go build
   only:
     changes:
       - foo/**
 
 build bar:
   stage: build
-  script: sleep 10 && echo Build bar!
+  script:
+    - cd bar
+    - go build
   only:
     changes:
       - bar/**
