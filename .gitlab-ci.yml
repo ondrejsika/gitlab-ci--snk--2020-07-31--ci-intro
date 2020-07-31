@@ -34,8 +34,8 @@ slow load test:
 integration test:
   stage: test
   script: sleep 10 && echo Integration Test!
-  only:
-    - $CI_MERGE_REQUEST_ID
+  rules:
+    - if: '$CI_MERGE_REQUEST_ID'
   needs:
     - build
 
