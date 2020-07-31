@@ -13,6 +13,7 @@ build foo:
   script:
     - cd foo
     - go build
+    - cp foo foo-$CI_COMMIT_SHORT_SHA
   only:
     changes:
       - .gitlab-ci.yml
@@ -20,6 +21,7 @@ build foo:
   artifacts:
     paths:
       - foo/foo
+      - foo/foo-*
 
 build foo darwin:
   variables:
