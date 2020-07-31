@@ -11,6 +11,11 @@ variables:
 before_script:
   - export PATH=$PATH:/usr/local/go/bin
 
+build demo:
+  stage: build
+  script:
+    - date > now
+
 build foo:
   stage: build
   script:
