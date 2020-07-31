@@ -4,12 +4,12 @@ stages:
 
 build:
   stage: build
-  script: echo Build!
+  script: sleep 10 && echo Build!
 
 test1:
   stage: test
-  script: echo Test1!
+  script: sleep 10 && echo Test1!
 
 test2:
   stage: test
-  script: echo Test2!
+  script: sleep 15 && echo Test2!
