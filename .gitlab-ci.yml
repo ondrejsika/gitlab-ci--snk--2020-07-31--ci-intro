@@ -8,7 +8,7 @@ build:
 
 test1:
   stage: test
-  script: sleep 10 && echo Test1!
+  script: sleep 10 && echo Test1! && false
 
 test2:
   stage: test
