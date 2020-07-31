@@ -3,6 +3,7 @@ stages:
   - report
   - test
   - deploy
+  - healthcheck
 
 build:
   stage: build
@@ -21,3 +22,7 @@ deploy:
   stage: deploy
   script: echo Deploy! && false
   when: manual
+
+healthcheck:
+  stage: healthcheck
+  script: echo Check deploymnet!
