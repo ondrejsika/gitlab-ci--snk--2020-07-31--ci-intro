@@ -1,4 +1,5 @@
 hello:
     script:
         - ls -al
+        - pwd
         - echo Hello World!
