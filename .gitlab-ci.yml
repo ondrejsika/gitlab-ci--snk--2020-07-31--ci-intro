@@ -22,6 +22,7 @@ deploy:
   stage: deploy
   script: echo Deploy! && false
   when: manual
+  allow_failure: false
 
 healthcheck:
   stage: healthcheck
