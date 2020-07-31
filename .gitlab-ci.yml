@@ -76,6 +76,19 @@ build bar:
     paths:
       - bar/bar
 
+build cmd-hello:
+  stage: build
+  script:
+    - cd cmd-hello
+    - go build -o hello
+  only:
+    changes:
+      - .gitlab-ci.yml
+      - cmd-hello/**
+  artifacts:
+    paths:
+      - cmd-hello/hello
+
 report:
   stage: report
   script: echo Reporting failed build ...
@@ -85,6 +98,17 @@ report:
       - .gitlab-ci.yml
       - foo/**
       - bar/**
+
+test cmd-hello:
+  stage: test
+  script:
+    - ./cmd-hello/hello
+  needs:
+    - build cmd-hello
+  only:
+    changes:
+      - .gitlab-ci.yml
+      - cmd-hello/**
 
 test foo:
   stage: test
