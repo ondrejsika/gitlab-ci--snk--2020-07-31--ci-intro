@@ -1,5 +1,5 @@
 
-FROM golang as build
+FROM golang:1.14 as build
 WORKDIR /build
 COPY server.go .
 ENV CGO_ENABLED=0
