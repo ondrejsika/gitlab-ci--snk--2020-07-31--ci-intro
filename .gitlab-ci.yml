@@ -103,6 +103,7 @@ test cmd-hello:
   stage: test
   script:
     - ./cmd-hello/hello
+    - tree
   needs:
     - build cmd-hello
   only:
