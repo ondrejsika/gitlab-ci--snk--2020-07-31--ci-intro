@@ -14,7 +14,12 @@ before_script:
 build demo:
   stage: build
   script:
-    - date > now
+    - date >> now
+    - cat now
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - now
 
 build foo:
   stage: build
