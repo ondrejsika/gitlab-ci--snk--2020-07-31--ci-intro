@@ -9,10 +9,16 @@ stages:
 build foo:
   stage: build
   script: echo Build foo!
+  only:
+    changes:
+      - foo/**
 
 build bar:
   stage: build
   script: sleep 10 && echo Build bar!
+  only:
+    changes:
+      - bar/**
 
 report:
   stage: report
@@ -21,18 +27,28 @@ report:
   needs:
     - build foo
     - build bar
+  only:
+    changes:
+      - foo/**
+      - bar/**
 
 test foo:
   stage: test
   script: echo Test foo!
   needs:
     - build foo
+  only:
+    changes:
+      - foo/**
 
 test bar:
   stage: test
   script: echo Test bar!
   needs:
     - build bar
+  only:
+    changes:
+      - bar/**
 
 slow load test:
   stage: test
@@ -59,7 +75,10 @@ deploy foo:
   needs:
     - test foo
   only:
-    - master
+    refs:
+      - master
+    changes:
+      - foo/**
 
 deploy bar:
   stage: deploy
@@ -69,7 +88,10 @@ deploy bar:
   needs:
     - test bar
   only:
-    - master
+    refs:
+      - master
+    changes:
+      - bar/**
 
 healthcheck:
   stage: healthcheck
