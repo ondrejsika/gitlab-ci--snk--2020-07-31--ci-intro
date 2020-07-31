@@ -17,6 +17,9 @@ build foo:
     changes:
       - .gitlab-ci.yml
       - foo/**
+  artifacts:
+    paths:
+      - foo/foo
 
 build bar:
   stage: build
@@ -27,6 +30,9 @@ build bar:
     changes:
       - .gitlab-ci.yml
       - bar/**
+  artifacts:
+    paths:
+      - bar/bar
 
 report:
   stage: report
