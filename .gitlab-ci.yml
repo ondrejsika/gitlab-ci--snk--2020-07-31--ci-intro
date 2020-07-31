@@ -96,6 +96,14 @@ test bar:
       - .gitlab-ci.yml
       - bar/**
 
+test baz:
+  stage: test
+  script: pipenv install
+  only:
+    changes:
+      - .gitlab-ci.yml
+      - baz/**
+
 slow load test:
   stage: test
   script: sleep 20 && echo Load Test! && false
