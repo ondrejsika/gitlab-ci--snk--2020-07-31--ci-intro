@@ -1,2 +1,4 @@
 hello:
-    script: echo Hello World!
+    script:
+        - ls
+        - echo Hello World!
