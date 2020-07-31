@@ -13,10 +13,14 @@ report:
   stage: report
   script: echo Reporting failed build ...
   when: on_failure
+  needs:
+    - build
 
 test:
   stage: test
   script: echo Test!
+  needs:
+    - build
 
 slow load test:
   stage: test
@@ -24,12 +28,16 @@ slow load test:
   allow_failure: true
   only:
     - master
+  needs:
+    - build
 
 integration test:
   stage: test
   script: sleep 10 && echo Integration Test!
   only:
     - merge_requests
+  needs:
+    - build
 
 deploy:
   stage: deploy
