@@ -28,6 +28,8 @@ deploy:
   script: echo Deploy!
   when: manual
   allow_failure: false
+  needs:
+    - test
 
 healthcheck:
   stage: healthcheck
