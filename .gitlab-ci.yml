@@ -98,7 +98,9 @@ test bar:
 
 test baz:
   stage: test
-  script: pipenv install
+  script:
+    - cd baz
+    - pipenv install
   only:
     changes:
       - .gitlab-ci.yml
