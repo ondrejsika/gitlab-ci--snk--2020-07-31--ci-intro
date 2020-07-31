@@ -59,6 +59,10 @@ slow load test:
   needs:
     - build foo
     - build bar
+  only:
+    changes:
+      - foo/**
+      - bar/**
 
 integration test:
   stage: test
@@ -66,6 +70,10 @@ integration test:
   needs:
     - build foo
     - build bar
+  only:
+    changes:
+      - foo/**
+      - bar/**
 
 deploy foo:
   stage: deploy
@@ -96,8 +104,12 @@ deploy bar:
 healthcheck:
   stage: healthcheck
   script: echo Check deploymnet!
-  only:
-    - master
   needs:
     - deploy foo
     - deploy bar
+  only:
+    refs:
+      - master
+    changes:
+      - foo/**
+      - bar/**
