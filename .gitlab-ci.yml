@@ -37,6 +37,8 @@ build foo:
       - foo/foo-*
 
 build foo go1.13:
+  tags:
+    - docker
   image: golang:1.13
   stage: build
   script:
