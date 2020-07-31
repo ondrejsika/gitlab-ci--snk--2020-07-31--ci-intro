@@ -24,9 +24,6 @@ report:
   stage: report
   script: echo Reporting failed build ...
   when: on_failure
-  needs:
-    - build foo
-    - build bar
   only:
     changes:
       - foo/**
@@ -56,9 +53,6 @@ slow load test:
   allow_failure: true
   only:
     - master
-  needs:
-    - build foo
-    - build bar
   only:
     changes:
       - foo/**
@@ -67,9 +61,6 @@ slow load test:
 integration test:
   stage: test
   script: sleep 10 && echo Integration Test!
-  needs:
-    - build foo
-    - build bar
   only:
     changes:
       - foo/**
@@ -104,9 +95,6 @@ deploy bar:
 healthcheck:
   stage: healthcheck
   script: echo Check deploymnet!
-  needs:
-    - deploy foo
-    - deploy bar
   only:
     refs:
       - master
