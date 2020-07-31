@@ -21,6 +21,21 @@ build foo:
     paths:
       - foo/foo
 
+build foo darwin:
+  variables:
+    GOOS: darwin
+  stage: build
+  script:
+    - cd foo
+    - go build -o foo-darwin
+  only:
+    changes:
+      - .gitlab-ci.yml
+      - foo/**
+  artifacts:
+    paths:
+      - foo/foo-darwin
+
 build bar:
   stage: build
   script:
