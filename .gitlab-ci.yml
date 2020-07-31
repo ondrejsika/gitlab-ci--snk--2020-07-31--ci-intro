@@ -5,22 +5,34 @@ stages:
   - deploy
   - healthcheck
 
-build:
+
+build foo:
   stage: build
-  script: echo Build!
+  script: echo Build foo!
+
+build bar:
+  stage: build
+  script: sleep 10 && echo Build bar!
 
 report:
   stage: report
   script: echo Reporting failed build ...
   when: on_failure
   needs:
-    - build
+    - build foo
+    - build bar
 
-test:
+test foo:
   stage: test
-  script: echo Test!
+  script: echo Test foo!
   needs:
-    - build
+    - build foo
+
+test bar:
+  stage: test
+  script: echo Test bar!
+  needs:
+    - build bar
 
 slow load test:
   stage: test
@@ -29,21 +41,33 @@ slow load test:
   only:
     - master
   needs:
-    - build
+    - build foo
+    - build bar
 
 integration test:
   stage: test
   script: sleep 10 && echo Integration Test!
   needs:
-    - build
+    - build foo
+    - build bar
 
-deploy:
+deploy foo:
   stage: deploy
-  script: echo Deploy!
+  script: echo Deploy foo!
   when: manual
   allow_failure: false
   needs:
-    - test
+    - test foo
+  only:
+    - master
+
+deploy bar:
+  stage: deploy
+  script: echo Deploy bar!
+  when: manual
+  allow_failure: false
+  needs:
+    - test bar
   only:
     - master
 
@@ -52,3 +76,6 @@ healthcheck:
   script: echo Check deploymnet!
   only:
     - master
+  needs:
+    - deploy foo
+    - deploy bar
