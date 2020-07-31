@@ -5,6 +5,8 @@ stages:
   - deploy
   - healthcheck
 
+before_script:
+  - export PATH=$PATH:/usr/local/go/bin
 
 build foo:
   stage: build
