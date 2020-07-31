@@ -1,17 +1,17 @@
-before_script:
-  - echo Global before
+stages:
+  - build
+  - report
+  - test
 
-after_script:
-  - echo Global after
+build:
+  stage: build
+  script: echo Build!
 
-job1:
-  script: echo Job1!
+report:
+  stage: report
+  script: echo Reporting failed build ...
+  when: on_failure
 
-job2:
-  script: echo Job2! && false
-
-job3:
-  before_script:
-    - echo Local before
-  after_script: []
-  script: echo Job3!
+test:
+  stage: test
+  script: echo Test!
