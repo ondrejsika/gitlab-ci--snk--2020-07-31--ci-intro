@@ -13,6 +13,7 @@ build foo:
     - go build
   only:
     changes:
+      - .gitlab-ci.yml
       - foo/**
 
 build bar:
@@ -22,6 +23,7 @@ build bar:
     - go build
   only:
     changes:
+      - .gitlab-ci.yml
       - bar/**
 
 report:
@@ -30,6 +32,7 @@ report:
   when: on_failure
   only:
     changes:
+      - .gitlab-ci.yml
       - foo/**
       - bar/**
 
@@ -40,6 +43,7 @@ test foo:
     - build foo
   only:
     changes:
+      - .gitlab-ci.yml
       - foo/**
 
 test bar:
@@ -49,6 +53,7 @@ test bar:
     - build bar
   only:
     changes:
+      - .gitlab-ci.yml
       - bar/**
 
 slow load test:
@@ -59,6 +64,7 @@ slow load test:
     - master
   only:
     changes:
+      - .gitlab-ci.yml
       - foo/**
       - bar/**
 
@@ -67,6 +73,7 @@ integration test:
   script: sleep 10 && echo Integration Test!
   only:
     changes:
+      - .gitlab-ci.yml
       - foo/**
       - bar/**
 
@@ -81,6 +88,7 @@ deploy foo:
     refs:
       - master
     changes:
+      - .gitlab-ci.yml
       - foo/**
 
 deploy bar:
@@ -94,6 +102,7 @@ deploy bar:
     refs:
       - master
     changes:
+      - .gitlab-ci.yml
       - bar/**
 
 healthcheck:
@@ -103,5 +112,6 @@ healthcheck:
     refs:
       - master
     changes:
+      - .gitlab-ci.yml
       - foo/**
       - bar/**
