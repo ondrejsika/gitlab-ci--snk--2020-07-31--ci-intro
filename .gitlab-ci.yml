@@ -36,6 +36,22 @@ build foo:
       - foo/foo
       - foo/foo-*
 
+build foo go1.13:
+  image: golang:1.13
+  stage: build
+  script:
+    - cd foo
+    - go build
+    - cp foo foo-$CI_COMMIT_SHORT_SHA
+  only:
+    changes:
+      - .gitlab-ci.yml
+      - foo/**
+  artifacts:
+    paths:
+      - foo/foo
+      - foo/foo-*
+
 build foo docker:
   stage: build
   script:
