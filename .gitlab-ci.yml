@@ -19,5 +19,5 @@ test:
 
 deploy:
   stage: deploy
-  script: echo Deploy!
+  script: echo Deploy! && false
   when: manual
