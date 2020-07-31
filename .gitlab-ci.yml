@@ -40,6 +40,7 @@ build foo go1.13:
   image: golang:1.13
   stage: build
   script:
+    - go version
     - cd foo
     - go build
     - cp foo foo-$CI_COMMIT_SHORT_SHA
