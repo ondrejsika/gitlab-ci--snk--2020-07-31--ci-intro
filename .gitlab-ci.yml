@@ -20,7 +20,7 @@ test:
 
 deploy:
   stage: deploy
-  script: echo Deploy! && false
+  script: echo Deploy!
   when: manual
   allow_failure: false
 
