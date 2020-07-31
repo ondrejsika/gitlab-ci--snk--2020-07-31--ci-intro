@@ -5,6 +5,9 @@ stages:
   - deploy
   - healthcheck
 
+variables:
+   IMAGE_FOO: $CI_REGISTRY_IMAGE/foo:$CI_COMMIT_SHORT_SHA
+
 before_script:
   - export PATH=$PATH:/usr/local/go/bin
 
@@ -22,6 +25,18 @@ build foo:
     paths:
       - foo/foo
       - foo/foo-*
+
+build foo docker:
+  stage: build
+  script:
+    - cd foo
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
+    - docker build -t $IMAGE_FOO .
+    - docker push $IMAGE_FOO
+  only:
+    changes:
+      - .gitlab-ci.yml
+      - foo/**
 
 build foo darwin:
   variables:
