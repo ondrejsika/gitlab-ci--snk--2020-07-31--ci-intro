@@ -20,7 +20,7 @@ test:
 
 slow load test:
   stage: test
-  script: sleep 20 && echo Test!
+  script: sleep 20 && echo Load Test! && false
   allow_failure: true
 
 deploy:
